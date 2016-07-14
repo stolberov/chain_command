@@ -5,7 +5,7 @@ namespace FooBundle\Command;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use ChainCommandBundle\Command\ChainCommand;
-use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 use Psr\Log\LoggerInterface;
 
 class FooCommand extends ChainCommand
@@ -16,10 +16,12 @@ class FooCommand extends ChainCommand
             ->setName('foo:hello')
             ->setDescription('Say hello from Foo')
             ->setChains((array)parent::getChains())
-            ->addArgument(
+            ->addOption(
                 'isOnChain',
-                InputArgument::OPTIONAL
-            )
+                false,
+                InputOption::VALUE_OPTIONAL,
+                "set true in case of execution in chain"
+            );
         ;
     }
 
